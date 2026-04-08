@@ -6,16 +6,26 @@ public class BankAccount {
     private long id;
     private String accountNumber;
     private BigDecimal balance;
-    private boolean isActive;
+    private boolean active;
+
+    public BankAccount() {}
+
+    public BankAccount(String accountNumber, BigDecimal initialBalance) {
+        if(initialBalance.compareTo(BigDecimal.ZERO) < 0) throw new RuntimeException("Initial Balance has to be greater than or equal to Zero");
+        this.id = 0;
+        this.accountNumber = accountNumber;
+        this.balance = initialBalance;
+        this.active = true;
+    }
 
     public BankAccount(long id, String accountNumber, BigDecimal balance, boolean isActive) {
-        if(balance.compareTo(BigDecimal.ZERO) >= 0) {
+        if(balance.compareTo(BigDecimal.ZERO) < 0) {
             throw new RuntimeException("Initial Balance has to be greater than or equal to Zero");
         }
         this.id = id;
         this.accountNumber = accountNumber;
         this.balance = balance;
-        this.isActive = isActive;
+        this.active = isActive;
     }
 
     public void deposit(BigDecimal amount) {
@@ -35,13 +45,45 @@ public class BankAccount {
         balance.subtract(amount);
     }
 
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
+    public BigDecimal getBalance() {
+        return balance;
+    }
+
+    public void setBalance(BigDecimal balance) {
+        this.balance = balance;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "BankAccount{" +
                 "id=" + id +
                 ", accountNumber='" + accountNumber + '\'' +
                 ", balance=" + balance +
-                ", isActive=" + isActive +
+                ", isActive=" + active +
                 '}';
     }
 }
