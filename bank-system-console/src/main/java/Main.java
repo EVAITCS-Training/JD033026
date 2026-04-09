@@ -3,6 +3,8 @@
 import entities.BankAccount;
 import entities.CheckingsAccount;
 import entities.SavingsAccount;
+import entities.Transferable;
+import utils.Calculator;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -15,6 +17,23 @@ public class Main {
              new CheckingsAccount("vuv023h4f378hf93h093", new BigDecimal("1600.00"), new BigDecimal("15.00"))
         );
 
-        System.out.println(listOfAccounts.get(0).equals(listOfAccounts.get(0)));
+        //System.out.println(listOfAccounts.get(0).equals(listOfAccounts.get(0)));
+        Transferable[] transferables = new Transferable[10];
+        int count = 0;
+        for (BankAccount account : listOfAccounts) {
+            account.applyMonthlyFee();
+            if(account instanceof Transferable transferable) {
+                transferables[count++] = transferable;
+            }
+        }
+
+        listOfAccounts.forEach(System.out::println);
+        for (Transferable transferable : transferables) {
+            System.out.println(transferable);
+        }
+
+//        System.out.println(Calculator.add(1, 2));
+//        System.out.println(Calculator.add(40.0, 25.00));
+
     }
 }

@@ -11,6 +11,7 @@ public class CheckingsAccount extends BankAccount {
         this.monthlyFee = monthlyFee;
     }
 
+    @Override
     public void applyMonthlyFee() {
         super.getBalance().subtract(monthlyFee);
     }
