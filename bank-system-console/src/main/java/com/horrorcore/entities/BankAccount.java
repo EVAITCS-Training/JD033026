@@ -1,4 +1,4 @@
-package entities;
+package com.horrorcore.entities;
 
 import java.math.BigDecimal;
 
