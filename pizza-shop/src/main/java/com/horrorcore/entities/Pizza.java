@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 public class Pizza {
+    private long id;
     private String name;
     private BigDecimal price;
     private char size;
@@ -18,6 +19,14 @@ public class Pizza {
         this.name = name;
         this.price = price;
         this.size = size;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -47,18 +56,19 @@ public class Pizza {
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Pizza pizza)) return false;
-        return getSize() == pizza.getSize() && Objects.equals(getName(), pizza.getName()) && Objects.equals(getPrice(), pizza.getPrice());
+        return getId() == pizza.getId() && getSize() == pizza.getSize() && Objects.equals(getName(), pizza.getName()) && Objects.equals(getPrice(), pizza.getPrice());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getName(), getPrice(), getSize());
+        return Objects.hash(getId(), getName(), getPrice(), getSize());
     }
 
     @Override
     public String toString() {
         return "Pizza{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", price=" + price +
                 ", size=" + size +
                 '}';
